@@ -1,0 +1,60 @@
+{% load static %}
+<html>
+<!-- <head>: Dokumentinformationen -->
+
+<head>
+    <!-- Titel in der Tapleiste -->
+    <title>Searchengine</title>
+    <!-- Alphabet -->
+    <meta charset="UTF-8" />
+    <!-- Stylesheet CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'searchengine/stylesIndex.css' %}">
+    <!-- Anpassung an anndere Geräte -->
+    <meta id="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Java-Script -->
+    <script src="{% static 'searchengine/requests.js' %}"></script>
+</head>
+
+<body>
+    <header class="header">
+        <img width="100" src="{% static 'searchengine/images/education.png' %}" alt="Logo Scholarship">
+        <h1> Check24 ab in den Urlaub </h1>
+    </header>
+
+    <div id="filterDiv">
+        <div id="filter">
+            <!-- Abflughafen -->
+            <input type="text" id="abflughafen" name="abflughafen" list="airports" maxlength="3" minlength="2" placeholder="Abflughafen"
+                required />
+            <datalist id="airports">
+                {% for airport in airports %}
+                <option value="{{ airport }}"> </option>
+                {% endfor %}
+            </datalist>
+        </div>
+        <div>
+            <button class="bookingButton" onclick="sendStart()"> Suchen </button>
+        </div>
+    </div>
+
+    <div class="divFooter">
+        <footer class="footer">
+            <h3>
+                Informationen
+            </h3>
+            <p>
+                Diese Website wurde zum zwecke der <a href="https://jobs.check24.de/gen-dev">Gen-Dev</a> Competion von
+                Check24 angefertigt.
+                Diese Website ist nicht zum publiezieren gedacht sonder für den privaten Gebrauch.
+                Die Imiges sind deshalb nicht verlinkt.
+            </p>
+            <p>
+                Author: Julian Fernando Weber
+                <br />
+                E-Mail: fernando.weber.private@gmail.com
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

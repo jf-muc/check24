@@ -1,0 +1,89 @@
+{% load static %}
+{% load bookingHandling %}
+<html>
+<!-- <head>: Dokumentinformationen -->
+
+<head>
+    <!-- Titel in der Tapleiste -->
+    <title>Searchengine</title>
+    <!-- Alphabet -->
+    <meta charset="UTF-8" />
+    <!-- Stylesheet CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'searchengine/stylesBooking.css' %}">
+    <!-- Anpassung an anndere Geräte -->
+    <meta id="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Java-Script -->
+    <script src="{% static 'searchengine/requests.js' %}"></script>
+    <!-- Google Fonds -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Urbanist">
+    <!-- Apple Icon Anfrage-->
+    <link rel="apple-touch-icon" href="{% static 'searchengine/images/education.png' %}"/>
+</head>
+
+<body>
+    <header class="header">
+        <img width="100" src="{% static 'searchengine/images/education.png' %}" alt="Logo Scholarship">
+        <h1> Check24 ab in den Urlaub </h1>
+    </header>
+    <div id="offerDiv">
+        <div id="offer">
+            <div id="shortInformation">
+                <p>{{ hotel.depatureDate|duration_delta:hotel.returnDate|duration_delta_format:2 }} Tage | {{ hotel.outbounddepartureairport }} -> {{ hotel.outboundarrivalairport }}</p>
+            </div>
+            <div id="information">
+                <div id="flight">
+                    <!-- depature -->
+                    <div>
+                        <div id="flightShortInformation">
+                            <strong>{{ hotel.depatureDate|dateFormat:'%d %B %Y'}}</strong>
+                        </div>
+                        <hr>
+                    </div>
+                    <div id="duration">
+                        <div id="depatureTo">
+                            Abfluguhrzeit: {{ hotel.depatureDate|dateFormat:'%H:%M' }} | {{ hotel.outbounddepartureairport }}
+                        </div>
+                        <div>
+                            {{ hotel.depatureDate|duration_delta:hotel.outboundarrivaldatetime|duration_delta_format:4 }} Std. | {{ hotel.outboundairline}}
+                        </div>
+                        <div id="arrivalTo">
+                            Ankunftszeit: {{ hotel.outboundarrivaldatetime|dateFormat:'%H:%M' }} | {{ hotel.outboundarrivalairport }}
+                        </div>
+                        <div id="depatureFrom">
+                            Abfluguhrzeit: {{ hotel.returnDate|dateFormat:'%H:%M' }} | {{ hotel.inbounddepatureairport }}
+                        </div>
+                        <div>
+                            {{ hotel.returnDate|duration_delta:hotel.inboundarrivaldatetime|duration_delta_format:4 }} Std. | {{ hotel.inboundairline }}
+                        </div>
+                        <div id="arrivalFrom">
+                            Ankunfszeit: {{ hotel.inboundarrivaldatetime|dateFormat:'%H:%M' }} | {{ hotel.inboundarrivalairport }}
+                        </div>
+                    </div>
+                </div>
+                <div id="attributes">
+                    <li>
+                        <span id="apartmentType">
+                            {{ hotel.roomtype|translatedName }}
+                        </span>
+                    </li>
+                    <li>
+                        <span id="mealtype">
+                            {{ hotel.mealtype|translatedName }}
+                        </span>
+                    </li>
+                </div>
+                <div id="price">
+                    <div id="priceInformation">
+                        Kosten: <strong> {{ hotel.price }}€ </strong>
+                    </div>
+                    <!-- Link zum Hotel (Button) -->
+                    <div>
+                        <form action="https://github.com/check24-scholarships/holiday-challenge">
+                        <button id="bookingButton"> Buchen</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

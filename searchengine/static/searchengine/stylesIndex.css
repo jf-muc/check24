@@ -1,0 +1,94 @@
+body {
+    /* padding innerer Abstand zum Objekt, margin äußerer Abstand zum Objekt*/
+    padding: 0;
+    margin: 0;
+    /* background-image: linear-gradient(to left, rgb(238, 238, 238), #C1F9FE); */
+    background-image: url(images/beach.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    /* Anzeigeart: flexibel*/
+    display: flex;
+    /*Horizontal*/
+    justify-content: flex-end;
+    align-items: center;
+    /*Schriftart. Wird durchlaufen, wenn eine nicht installiert ist*/
+    font-family: 'Urbanist', serif;
+    margin-right: 1%;
+    margin-top: 0.5%;
+    margin-bottom: 8px;
+}
+
+#filterDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+#filter {
+    border-radius: 18px;
+    background: #fff;
+    letter-spacing: 2px;
+}
+
+#filter input[type="text"] {
+    flex: 0 1 4em;
+
+    padding: 0.5em;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    text-align: center;
+    line-height: 1;
+    border-radius: 500px;
+}
+
+
+
+.bookingButton {
+
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+}
+
+.bookingButton:hover {
+    transform: scale(1.04);
+    background-color: #21e065;
+}
+
+.footer {
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 1%;
+    flex-shrink: 0;
+}
+
+.divFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+}

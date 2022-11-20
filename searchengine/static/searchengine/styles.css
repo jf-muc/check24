@@ -1,0 +1,273 @@
+body {
+    /* padding innerer Abstand zum Objekt, margin äußerer Abstand zum Objekt*/
+    padding: 0;
+    margin: 0;
+    /* background-image: linear-gradient(to left, rgb(238, 238, 238), #C1F9FE); */
+    background-image: url(images/beach.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.header {
+    /* Anzeigeart: flexibel*/
+    display: flex;
+    /*Horizontal*/
+    justify-content: flex-end;
+    align-items: center;
+    /*Schriftart. Wird durchlaufen, wenn eine nicht installiert ist*/
+    font-family: 'Urbanist', serif;
+    margin-right: 1%;
+    margin-top: 0.5%;
+    margin-bottom: 8px;
+}
+/* Filter */
+.filterDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    z-index: 1;
+    position: sticky;
+
+}
+.filter {
+    padding-left: 1%;
+    padding-right: 1%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    font-size: larger;
+    border-radius: 18px;
+}
+
+.filter label {
+    flex: 0 1 4em;
+
+    padding: 0.5em;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    text-align: center;
+    line-height: 1;
+    border-radius: 500px;
+}
+.filter input[type="submit"] {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 0;
+    border-radius: 500px;
+    border: 1px solid transparent;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+    margin-top: 00.5%;
+    margin-bottom: 00.5%;
+}
+
+.filter input[type="text"],
+.filter input[type="number"],
+.filter input[type="date"],
+.filter input[type="checkbox"] {
+    flex: 0 1 4em;
+
+    padding: 0.5em;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    text-align: center;
+    line-height: 1;
+    border-radius: 500px;
+}
+
+.filter input[type="number"] {
+    min-width: 150px;
+}
+
+.filter select {
+    appearance: none;
+    background: #fff;
+    border-radius: 0;
+    font-size: 1.2em;
+    padding: 0.25em 2em 0.25em 1em;
+    color: black;
+}
+
+/* Filter ende */
+/* Hotel-Anzeige Container*/
+.hotel {
+    width: 1000px;
+    height: 200px;
+    border-color: black;
+    border-style: solid;
+    margin: 4px auto 4px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 8px;
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.pictures {
+    grid-row: 1/3;
+    grid-column: 1;
+}
+
+.pictures img {
+    height: 99%;
+}
+
+.information {
+    grid-row: 1/3;
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: fr1 fr1;
+    grid-gap: 4px;
+}
+
+.name {
+    grid-column: 1/2;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating {
+    grid-column: 1/2;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 6px;
+}
+
+.oneStars {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.twoStars {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.threeStars {
+    grid-column: 3;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fourStars {
+    grid-column: 4;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fiveStars {
+    grid-column: 5;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.oneStars:hover,
+.twoStars:hover,
+.threeStars:hover,
+.fourStars:hover,
+.fiveStars:hover {
+    transform: scale(1.04);
+}
+
+.booking {
+    grid-row: 1/3;
+    grid-column: 3;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 8px;
+}
+
+.price {
+    grid-row: 1;
+    grid-column: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goToBooking {
+    grid-row: 2;
+    grid-column: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.bookingButton {
+
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+}
+
+.bookingButton:hover {
+    transform: scale(1.04);
+    background-color: #21e065;
+}
+
+.footer {
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 1%;
+}
+
+.divFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

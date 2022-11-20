@@ -1,0 +1,138 @@
+{% load static %}
+{% load dictHandling %}
+<html>
+<!-- <head>: Dokumentinformationen -->
+
+<head>
+    <!-- Titel in der Tapleiste -->
+    <title>Searchengine</title>
+    <!-- Alphabet -->
+    <meta charset="UTF-8" />
+    <!-- Stylesheet CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'searchengine/styles.css' %}">
+    <!-- Anpassung an anndere Geräte -->
+    <meta id="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Java-Script -->
+    <script src="{% static 'searchengine/requests.js' %}"></script>
+    <!-- Google Fonds -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Urbanist">
+</head>
+<!-- Eigentliches Erscheinungsbild -->
+
+<body>
+    <header class="header">
+        <img width="100" src="{% static 'searchengine/images/education.png' %}" alt="Logo Scholarship">
+        <h1> Check24 ab in den Urlaub </h1>
+    </header>
+    <!-- Filter: Anzahl Persone (Kinder/Erwachsene), Abflughäfen, Zeitraum, Pension, Oceanblick, Raumtyp, Preis, Zurücksetzen -->
+    <div class="filterDiv">
+        <div class="filter">
+            <!-- Abflughafen -->
+            <input type="text" id="abflughafen" list="airports" maxlength="3" minlength="2" placeholder="Abflughafen"
+                required value="{{ dataDict|get_item:'outbounddepartureairport'}}" />
+            <datalist id="airports">
+                {% for airport in airports %}
+                <option value="{{ airport }}"> </option>
+                {% endfor %}
+            </datalist>
+            <!-- Anzahl Erwachsene -->
+            <input type="number" id="anzahlErwachsene" min="1" max="4" placeholder="Anzahl Erwachsene" required
+                value="{{ dataDict|get_item:'countAdults' }}">
+            <!-- Anzahl Personen -->
+            <input type="number" id="anzahlKinder" min="0" max="4" placeholder="Anzahl Kinder"
+                value="{{ dataDict|get_item:'countChildren' }}">
+            <!-- Zeitraum Begin -->
+            <label for="begin" id="textLabel">begin:</label>
+            <input type="date" id="begin" placeholder="Begin" required min="{{today}}"
+                value="{{ dataDict|get_item:'begin' }}">
+            <!-- Zeitraum Ende -->
+            <label for="ende">ende:</label>
+            <input type="date" id="ende" placeholder="Ende" required value="{{ dataDict|get_item:'ende' }}">
+            <!-- Pension mit Auswahloptionen -->
+            <label for="pension">Pension:</label>
+            <select id="pension" title="Pension">
+                <option value="all" {{ dataDict|is_selected_Mealtype:'all' }}>Alles</option>
+                <option value="halfboard" {{ dataDict|is_selected_Mealtype:'halfboard' }}> Halbpension</option>
+                <option value="none" {{ dataDict|is_selected_Mealtype:'none' }}>keine Pension</option>
+                <option value="breakfast" {{ dataDict|is_selected_Mealtype:'breakfast' }}>Frühstück</option>
+            </select>
+            <!-- Oceanblick -->
+            <label for="oceanblick">Oceanblick</label>
+            <input type="checkbox" id="oceanblick" value="{{ dataDict|get_item:'oceanview'}}">
+            <!-- Raumtyp evtl typen aus datenbank auslesen und dadurch optionen anpassen -->
+            <label for="Raumtyp">Raumtyp:</label>
+            <select id="raumtyp">
+                <option value="all" {{ dataDict|is_selected_Roomtype:'all' }}>Alles</option>
+                <option value="double" {{ dataDict|is_selected_Roomtype:'double' }}>Doppelbettzimmer</option>
+                <option value="apartment" {{ dataDict|is_selected_Roomtype:'apartment' }}>Apartment</option>
+                <option value="juniorsuit" {{ dataDict|is_selected_Roomtype:'juniorsuit' }}>Juniorsuit</option>
+                <option value="single" {{ dataDict|is_selected_Roomtype:'single' }}>Einzelbettzimmer</option>
+            </select>
+
+            <input type="submit" id="submit" onclick="sendSearchRequest()">
+        </div>
+    </div>
+    <!-- Hotel Div -->
+    <div>
+        {% for hotel in filteredObjects %}
+        <div class="hotel">
+            <!-- Bilder -->
+            <div class="box pictures">
+                <img src="{% static '/searchengine/images/prev.jpg' %}" alt="Bilder vom Hotel" />
+            </div>
+            <!-- Name, Bewertung -->
+            <div class="box information">
+                <!-- Name -->
+                <div class="box name">
+                    <h2> {{ hotels. }} </h2>
+                </div>
+                <!-- Berwertung (noch nicht in der Datenbank beinhaltet)-->
+                <div class="box rating">
+                    {% for ratingStar in 6|random_rating %}
+                    <img src="{% static '/searchengine/images/star.png'%}" class="{{ ratingStar|get_name_rating }}" />
+                    {% endfor %}
+                </div>
+
+            </div>
+            <!-- Buchen (Preis, Button) -->
+            <div class="box booking">
+                <!-- Preis -->
+                <div class="box price">
+                    <p>{{ hotel.depatureDate|get_duration:hotel.returnDate }} Tage | {{ hotel.price }}€ | {{ hotel.inboundairline }} </p>
+                </div>
+                <!-- Link zum Hotel (Button) -->
+                <div class="box goToBooking">
+                    <form action="/searchengine/booking/hotelID={{hotel.Hotel_ID}}">
+                        <button class="bookingButton"> Buchen </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty">
+            <p>Leider wurde für deine Suchanfragen kein Ergebnis gefunden </p>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- DIV für Informationen -->
+    <div class="divFooter">
+        <footer class="footer">
+            <!-- für Suchmaschienenoptimierung: h1 wichigste überschrift usw.-->
+            <h3>
+                Informationen
+            </h3>
+            <!-- Paragraph -->
+            <p>
+                Diese Website wurde zum zwecke der <a href="https://jobs.check24.de/gen-dev">Gen-Dev</a> Competion von
+                Check24 angefertigt.
+                Diese Website ist nicht zum publiezieren gedacht sonder für den privaten Gebrauch.
+                Die Imiges sind deshalb nicht verlinkt.
+            </p>
+            <p>
+                Author: Julian Fernando Weber
+                <br />
+                E-Mail: fernando.weber.private@gmail.com
+            </p>
+        </footer>
+    </div>
+</body>

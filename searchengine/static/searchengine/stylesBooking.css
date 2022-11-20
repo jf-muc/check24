@@ -1,0 +1,208 @@
+body {
+    /* padding innerer Abstand zum Objekt, margin äußerer Abstand zum Objekt*/
+    padding: 0;
+    margin: 0;
+    /* background-image: linear-gradient(to left, rgb(238, 238, 238), #C1F9FE); */
+    background-image: url(images/beach.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header {
+    /* Anzeigeart: flexibel*/
+    display: flex;
+    /*Horizontal*/
+    justify-content: flex-end;
+    align-items: center;
+    /*Schriftart. Wird durchlaufen, wenn eine nicht installiert ist*/
+    font-family: 'Urbanist', serif;
+    margin-right: 1%;
+    margin-top: 0.5%;
+    margin-bottom: 8px;
+}
+
+#offerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+#offer {
+    width: 80%;
+    height: 500px;
+    border-radius: 18px;
+
+    display: grid;
+    grid-gap: 5px;
+    grid-template-rows: 1fr 10fr;
+    background: #fff;
+    letter-spacing: 2px;
+}
+
+#shortInformation {
+    display: flex;
+    grid-row: 1;
+    
+    border-bottom: 3px solid #ccc;
+}
+
+#shortInformation p {
+    text-transform: uppercase;
+    margin: 1%;
+}
+#information {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3px
+}
+
+#flight {
+    grid-column: 1;
+    padding: 2%;
+    background-color: aliceblue;
+    border-radius: 18px;
+    margin: 2%;
+}
+
+#flightShortInformation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#duration {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+#depatureTo::before {
+    font-family: 'iconfont';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\E84B';
+    font-size: 30px;
+    color: #575757;
+    display: block;
+}
+
+#depatureFrom::before {
+    font-family: 'iconfont';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\E84C';
+    font-size: 30px;
+    color: #575757;
+    display: block;
+}
+
+#attributes {
+    grid-column: 2;
+    padding: 1%;
+    background-color: aliceblue;
+    border-radius: 18px;
+    margin: 2%;
+}
+
+#attributes li {
+    list-style-type: none;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+#attributes li #apartmentType::before {
+        font-family: 'iconfont';
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: '\E80C';
+        font-size: 30px;
+        color: #575757;
+        display: block;
+}
+
+#attributes li #mealtype::before {
+    font-family: 'iconfont';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: '\E886';
+    font-size: 30px;
+    color: #575757;
+    display: block;
+}
+
+#price {
+    grid-column: 3;
+    background-color: aliceblue;
+    border-radius: 18px;
+    margin: 2%;
+    justify-content: center;
+    align-items: center;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+#priceInformation {
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bookingButton {
+    grid-row: 2;
+
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 17px 48px;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+}
+
+#bookingButton:hover {
+    transform: scale(1.04);
+    background-color: #21e065;
+}
